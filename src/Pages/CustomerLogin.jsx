@@ -28,14 +28,17 @@ const CustomerLogin = () => {
     
     if (customer) 
     {
+      // mark customer as logged in and keep their data for the session
       sessionStorage.setItem('isCustomer', 'true');
+      sessionStorage.setItem('currentCustomer', JSON.stringify(customer));
       alert(`Login successful! Welcome, ${customer.fullName}!`);
       console.log('Login successful:', customer);
       setFormData({
         username: '',
         password: '',
       });
-      navigate('/');
+      // redirect to customer dashboard instead of generic home
+      navigate('/customer/home');
       window.location.reload();
     } 
     else 
